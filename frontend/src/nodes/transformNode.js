@@ -3,12 +3,19 @@
 import { useState } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './baseNode';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/select';
 
 export const TransformNode = ({ id, data }) => {
   const [transformType, setTransformType] = useState(data?.transformType || 'uppercase');
 
-  const handleTransformChange = (e) => {
-    setTransformType(e.target.value);
+  const handleTransformChange = (value) => {
+    setTransformType(value);
   };
 
   const handles = [
@@ -30,17 +37,21 @@ export const TransformNode = ({ id, data }) => {
       data={data}
       title="Transform"
       handles={handles}
-      style={{ backgroundColor: '#f3e5f5' }}
     >
-      <label>
-        Transform:
-        <select value={transformType} onChange={handleTransformChange}>
-          <option value="uppercase">Uppercase</option>
-          <option value="lowercase">Lowercase</option>
-          <option value="reverse">Reverse</option>
-          <option value="trim">Trim</option>
-          <option value="replace">Replace</option>
-        </select>
+      <label className="flex flex-col gap-1">
+        <span className="text-xs font-medium text-slate-600 dark:text-slate-400">Transform</span>
+        <Select value={transformType} onValueChange={handleTransformChange}>
+          <SelectTrigger className="h-8 text-sm">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="uppercase">Uppercase</SelectItem>
+            <SelectItem value="lowercase">Lowercase</SelectItem>
+            <SelectItem value="reverse">Reverse</SelectItem>
+            <SelectItem value="trim">Trim</SelectItem>
+            <SelectItem value="replace">Replace</SelectItem>
+          </SelectContent>
+        </Select>
       </label>
     </BaseNode>
   );

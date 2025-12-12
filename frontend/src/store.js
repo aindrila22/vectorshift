@@ -30,6 +30,19 @@ export const useStore = create((set, get) => ({
         nodes: applyNodeChanges(changes, get().nodes),
       });
     },
+    deleteNode: (nodeId) => {
+      const { nodes, edges } = get();
+      // Remove the node
+      const updatedNodes = nodes.filter((node) => node.id !== nodeId);
+      // Remove edges connected to this node
+      const updatedEdges = edges.filter(
+        (edge) => edge.source !== nodeId && edge.target !== nodeId
+      );
+      set({
+        nodes: updatedNodes,
+        edges: updatedEdges,
+      });
+    },
     onEdgesChange: (changes) => {
       set({
         edges: applyEdgeChanges(changes, get().edges),

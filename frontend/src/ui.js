@@ -42,7 +42,7 @@ const selector = (state) => ({
   onConnect: state.onConnect,
 });
 
-export const PipelineUI = () => {
+export const PipelineUI = ({ isDark = false }) => {
     const reactFlowWrapper = useRef(null);
     const [reactFlowInstance, setReactFlowInstance] = useState(null);
     const {
@@ -90,7 +90,7 @@ export const PipelineUI = () => {
             addNode(newNode);
           }
         },
-        [reactFlowInstance]
+        [reactFlowInstance, getNodeID, addNode]
     );
 
     const onDragOver = useCallback((event) => {
@@ -99,8 +99,7 @@ export const PipelineUI = () => {
     }, []);
 
     return (
-        <>
-        <div ref={reactFlowWrapper} style={{width: '100wv', height: '70vh'}}>
+        <div ref={reactFlowWrapper} className="w-full h-full">
             <ReactFlow
                 nodes={nodes}
                 edges={edges}
@@ -114,12 +113,28 @@ export const PipelineUI = () => {
                 proOptions={proOptions}
                 snapGrid={[gridSize, gridSize]}
                 connectionLineType='smoothstep'
+                defaultEdgeOptions={{
+                    style: { strokeWidth: 2 },
+                    animated: false,
+                }}
+                fitView
             >
-                <Background color="#aaa" gap={gridSize} />
-                <Controls />
-                <MiniMap />
+                <Background 
+                    key={isDark ? 'dark-bg' : 'light-bg'}
+                    color={isDark ? "#475569" : "#94a3b8"} 
+                    gap={gridSize}
+                />
+                <Controls 
+                    className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-lg"
+                />
+                <MiniMap 
+                    className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-lg"
+                    nodeColor={(node) => {
+                        return '#64748b';
+                    }}
+                    maskColor="rgba(0, 0, 0, 0.1)"
+                />
             </ReactFlow>
         </div>
-        </>
     )
 }

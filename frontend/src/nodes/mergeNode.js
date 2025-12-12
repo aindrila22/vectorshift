@@ -3,12 +3,19 @@
 import { useState } from 'react';
 import { Position } from 'reactflow';
 import { BaseNode } from './baseNode';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/select';
 
 export const MergeNode = ({ id, data }) => {
   const [mergeStrategy, setMergeStrategy] = useState(data?.mergeStrategy || 'concat');
 
-  const handleStrategyChange = (e) => {
-    setMergeStrategy(e.target.value);
+  const handleStrategyChange = (value) => {
+    setMergeStrategy(value);
   };
 
   const handles = [
@@ -43,16 +50,21 @@ export const MergeNode = ({ id, data }) => {
       data={data}
       title="Merge"
       handles={handles}
-      style={{ backgroundColor: '#e8f5e9', height: 100 }}
+      style={{ minHeight: 100 }}
     >
-      <label>
-        Strategy:
-        <select value={mergeStrategy} onChange={handleStrategyChange}>
-          <option value="concat">Concatenate</option>
-          <option value="sum">Sum</option>
-          <option value="average">Average</option>
-          <option value="join">Join</option>
-        </select>
+      <label className="flex flex-col gap-1">
+        <span className="text-xs font-medium text-slate-600 dark:text-slate-400">Strategy</span>
+        <Select value={mergeStrategy} onValueChange={handleStrategyChange}>
+          <SelectTrigger className="h-8 text-sm">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="concat">Concatenate</SelectItem>
+            <SelectItem value="sum">Sum</SelectItem>
+            <SelectItem value="average">Average</SelectItem>
+            <SelectItem value="join">Join</SelectItem>
+          </SelectContent>
+        </Select>
       </label>
     </BaseNode>
   );

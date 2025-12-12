@@ -1,13 +1,349 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100;
+    margin: 0;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-slate-100 dark:bg-slate-800 rounded;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 dark:bg-slate-600 rounded hover:bg-slate-400 dark:hover:bg-slate-500;
+  }
+
+  /* React Flow Professional Styling */
+  .react-flow {
+    @apply bg-slate-50 dark:bg-slate-900;
+  }
+
+  .react-flow__node {
+    @apply transition-all duration-200;
+  }
+
+  .react-flow__node:hover {
+    @apply shadow-xl;
+    transform: translateY(-1px);
+  }
+
+  /* Handle styles - Professional */
+  .react-flow__handle {
+    @apply w-3 h-3 border-2;
+    @apply border-slate-200 dark:border-slate-700;
+    @apply bg-slate-600 dark:bg-slate-400;
+    @apply transition-all duration-200;
+  }
+
+  .react-flow__handle:hover {
+    @apply scale-125 border-slate-400 dark:border-slate-500;
+    @apply bg-slate-500 dark:bg-slate-300;
+  }
+
+  .react-flow__handle-connecting {
+    @apply bg-emerald-500 dark:bg-emerald-400;
+  }
+
+  .react-flow__handle-valid {
+    @apply bg-emerald-500 dark:bg-emerald-400;
+  }
+
+  /* Edge styles - Professional */
+  .react-flow__edge-path {
+    @apply stroke-slate-500 dark:stroke-slate-400;
+    stroke-width: 2;
+    transition: stroke-width 0.2s ease;
+  }
+
+  .react-flow__edge:hover .react-flow__edge-path {
+    @apply stroke-slate-600 dark:stroke-slate-300;
+    stroke-width: 2.5;
+  }
+
+  .react-flow__edge.selected .react-flow__edge-path {
+    @apply stroke-slate-700 dark:stroke-slate-200;
+    stroke-width: 3;
+  }
+
+  .react-flow__edge-text {
+    @apply fill-slate-700 dark:fill-slate-300;
+    @apply text-xs font-medium;
+  }
+
+  /* Background pattern */
+  .react-flow__background {
+    @apply opacity-40 dark:opacity-20;
+  }
+
+  /* Controls styling */
+  .react-flow__controls {
+    @apply bg-white dark:bg-slate-800;
+    @apply border border-slate-200 dark:border-slate-700;
+    @apply shadow-lg rounded-lg;
+  }
+
+  .react-flow__controls-button {
+    @apply border-b border-slate-200 dark:border-slate-700;
+    @apply text-slate-700 dark:text-slate-300;
+    @apply hover:bg-slate-50 dark:hover:bg-slate-700;
+    @apply relative;
+    background-image: none !important;
+  }
+
+  .react-flow__controls-button:hover {
+    @apply bg-slate-100 dark:bg-slate-700;
+  }
+
+  /* Replace zoom in icon */
+  .react-flow__controls-button[aria-label*="zoom in"]::before,
+  .react-flow__controls-button[aria-label*="Zoom in"]::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3Cpath d='M11 8v6'/%3E%3Cpath d='M8 11h6'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  /* Replace zoom out icon */
+  .react-flow__controls-button[aria-label*="zoom out"]::before,
+  .react-flow__controls-button[aria-label*="Zoom out"]::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3Cpath d='M8 11h6'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  /* Replace fit view icon */
+  .react-flow__controls-button[aria-label*="fit view"]::before,
+  .react-flow__controls-button[aria-label*="Fit view"]::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  /* Replace lock icon */
+  .react-flow__controls-button[aria-label*="lock"]::before,
+  .react-flow__controls-button[aria-label*="Lock"]::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='11' x='3' y='11' rx='2' ry='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  /* Replace unlock icon */
+  .react-flow__controls-button[aria-label*="unlock"]::before,
+  .react-flow__controls-button[aria-label*="Unlock"]::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='11' x='3' y='11' rx='2' ry='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 9.9-1'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  /* Minimap styling */
+  .react-flow__minimap {
+    @apply bg-white dark:bg-slate-800;
+    @apply border border-slate-200 dark:border-slate-700;
+    @apply shadow-lg rounded-lg;
+  }
+
+  /* Select animations */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes zoom-in {
+    from {
+      transform: scale(0.95);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes zoom-out {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(0.95);
+    }
+  }
+
+  @keyframes slide-in-from-top {
+    from {
+      transform: translateY(-8px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-from-bottom {
+    from {
+      transform: translateY(8px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-from-left {
+    from {
+      transform: translateX(-8px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-from-right {
+    from {
+      transform: translateX(8px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-in {
+    animation-duration: 150ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-fill-mode: both;
+  }
+
+  .animate-out {
+    animation-duration: 150ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-fill-mode: both;
+  }
+
+  .fade-in-0 {
+    animation-name: fade-in;
+  }
+
+  .fade-out-0 {
+    animation-name: fade-out;
+  }
+
+  .zoom-in-95 {
+    animation-name: zoom-in;
+  }
+
+  .zoom-out-95 {
+    animation-name: zoom-out;
+  }
+
+  .slide-in-from-top-2 {
+    animation-name: slide-in-from-top;
+  }
+
+  .slide-in-from-bottom-2 {
+    animation-name: slide-in-from-bottom;
+  }
+
+  .slide-in-from-left-2 {
+    animation-name: slide-in-from-left;
+  }
+
+  .slide-in-from-right-2 {
+    animation-name: slide-in-from-right;
+  }
+
+  @keyframes slide-out-to-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-8px);
+    }
+  }
+
+  @keyframes slide-out-to-top {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-8px);
+    }
+  }
+
+  .slide-out-to-left-1\/2 {
+    animation-name: slide-out-to-left;
+  }
+
+  .slide-out-to-top-\[48\%\] {
+    animation-name: slide-out-to-top;
+  }
 }

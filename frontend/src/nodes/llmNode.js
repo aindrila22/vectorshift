@@ -31,7 +31,9 @@ export const LLMNode = ({ id, data }) => {
       title="LLM"
       handles={handles}
     >
-      <span>This is a LLM.</span>
+      <div className="text-sm text-slate-600 dark:text-slate-400">
+        Large Language Model
+      </div>
     </BaseNode>
   );
 }

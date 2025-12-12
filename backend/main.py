@@ -8,7 +8,7 @@ app = FastAPI()
 # Add CORS middleware to allow frontend to communicate with backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React default port
+    allow_origins=["http://localhost:3000", "http://localhost:3002"],  # React default port
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
